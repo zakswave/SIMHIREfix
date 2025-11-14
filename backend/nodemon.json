@@ -1,0 +1,19 @@
+{
+  "watch": [
+    "server.js",
+    "controllers/**/*.js",
+    "middleware/**/*.js",
+    "routes/**/*.js",
+    "utils/**/*.js",
+    "schemas/**/*.js"
+  ],
+  "ignore": [
+    "data/**",
+    "data/backups/**",
+    "node_modules/**",
+    "*.json",
+    "*.log"
+  ],
+  "ext": "js",
+  "delay": 500
+}

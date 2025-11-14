@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==================== RESPONSIVE UTILITIES ==================== */
+
+@layer utilities {
+  /* Touch-friendly tap targets (minimum 44x44px) */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized text sizes */
+  .text-mobile-xs { font-size: 0.75rem; line-height: 1rem; }
+  .text-mobile-sm { font-size: 0.875rem; line-height: 1.25rem; }
+  .text-mobile-base { font-size: 1rem; line-height: 1.5rem; }
+  .text-mobile-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  .text-mobile-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .text-mobile-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .text-mobile-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  
+  /* Safe area insets for notched devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Mobile-friendly spacing */
+  .mobile-container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .mobile-section {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+}
+
+/* ==================== MOBILE SCROLLBAR ==================== */
+
+@media (max-width: 768px) {
+  /* Hide scrollbar on mobile for cleaner look */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ==================== DESKTOP SCROLLBAR STYLING ==================== */
+
+@media (min-width: 769px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
+}

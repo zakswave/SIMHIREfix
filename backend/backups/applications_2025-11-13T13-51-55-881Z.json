@@ -1,0 +1,144 @@
+{
+  "applications": [
+    {
+      "id": "bec77922-2b5c-4431-80cc-1c7dddde21db",
+      "jobId": "d6648608-3f36-4497-a256-4e1b583c6116",
+      "candidateId": "8ef41097-b68c-4e8f-97c5-5ec2ae4830c4",
+      "companyId": "8424cc28-78a2-4fb3-b798-3eba477d86aa",
+      "status": "applied",
+      "appliedAt": "2025-11-13T01:36:29.522Z",
+      "timeline": [
+        {
+          "date": "2025-11-13T01:36:29.522Z",
+          "status": "applied",
+          "description": "Lamaran diterima dan sedang dalam proses review",
+          "updatedBy": "system"
+        },
+        {
+          "date": "2025-11-13T04:49:41.437Z",
+          "status": "interview",
+          "description": "Stage changed to Interview",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        },
+        {
+          "date": "2025-11-13T04:51:59.071Z",
+          "status": "rejected",
+          "description": "Stage changed to Ditolak",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        },
+        {
+          "date": "2025-11-13T04:52:08.880Z",
+          "status": "applied",
+          "description": "Stage changed to Melamar",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        }
+      ],
+      "candidateData": {
+        "name": "John Doe",
+        "email": "candidate@test.com",
+        "phone": "081234567890",
+        "avatar": null,
+        "bio": "Passionate software developer with 3 years of experience",
+        "location": "Jakarta",
+        "skills": [
+          "JavaScript",
+          "React",
+          "Node.js",
+          "Python"
+        ],
+        "experience": 3,
+        "cv": "/uploads/documents/Perhitungan desain antena monopole -1762997789509-417566684.pdf",
+        "coverLetter": "Kepada Yth. Tim Rekrutmen Tech Innovators Inc,\r\n\r\nSaya menulis surat ini untuk melamar posisi Frontend Developer. Sebagai developer dengan pengalaman [X] tahun, saya telah mengerjakan berbagai proyek yang melibatkan teknologi modern dan best practices.\r\n\r\nKeahlian teknis saya meliputi:\r\n• Pengembangan aplikasi menggunakan [teknologi]\r\n• Problem solving dan debugging yang efisien\r\n• Kolaborasi dalam tim agile/scrum\r\n\r\nSaya tertarik dengan Tech Innovators Inc karena reputasinya dalam inovasi teknologi. Portfolio saya dapat dilihat di https://jhondoe.com.\r\n\r\nSaya berharap dapat mendiskusikan bagaimana skills saya dapat membantu mencapai goals tim Anda.\r\n\r\nBest regards,\r\nJohn Doe",
+        "portfolio": [],
+        "simulasiScores": {}
+      },
+      "jobData": {
+        "title": "Frontend Developer",
+        "company": "Tech Innovators Inc",
+        "companyLogo": null,
+        "location": "Jakarta",
+        "type": "full-time",
+        "salary": {
+          "min": 12000000,
+          "max": 18000000,
+          "currency": "IDR"
+        }
+      },
+      "companyNotes": "Stage changed to Melamar",
+      "interviewScheduled": null
+    },
+    {
+      "id": "5ae31a2b-404a-4231-a378-2bedb26998d6",
+      "jobId": "692a0e9c-a041-46e2-ae0a-a6a4238e9103",
+      "candidateId": "8ef41097-b68c-4e8f-97c5-5ec2ae4830c4",
+      "companyId": "8424cc28-78a2-4fb3-b798-3eba477d86aa",
+      "status": "screening",
+      "appliedAt": "2025-11-13T01:54:32.098Z",
+      "timeline": [
+        {
+          "date": "2025-11-13T01:54:32.098Z",
+          "status": "applied",
+          "description": "Lamaran diterima dan sedang dalam proses review",
+          "updatedBy": "system"
+        },
+        {
+          "date": "2025-11-13T04:35:26.711Z",
+          "status": "screening",
+          "description": "Stage changed to Screening",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        },
+        {
+          "date": "2025-11-13T04:35:33.672Z",
+          "status": "interview",
+          "description": "Stage changed to Interview",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        },
+        {
+          "date": "2025-11-13T04:35:42.392Z",
+          "status": "rejected",
+          "description": "Stage changed to Ditolak",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        },
+        {
+          "date": "2025-11-13T04:50:45.985Z",
+          "status": "screening",
+          "description": "Stage changed to Screening",
+          "updatedBy": "8424cc28-78a2-4fb3-b798-3eba477d86aa"
+        }
+      ],
+      "candidateData": {
+        "name": "John Doe",
+        "email": "candidate@test.com",
+        "phone": "081234567890",
+        "avatar": null,
+        "bio": "Passionate software developer with 3 years of experience",
+        "location": "Jakarta",
+        "skills": [
+          "JavaScript",
+          "React",
+          "Node.js",
+          "Python"
+        ],
+        "experience": 3,
+        "cv": "/uploads/documents/PCB_PCB2_2025-11-11 (3)-1762998872084-326507112.pdf",
+        "coverLetter": "Kepada Yth. Tim Rekrutmen Tech Innovators Inc,\r\n\r\nSaya menulis surat ini untuk melamar posisi Backend Developer. Sebagai developer dengan pengalaman [X] tahun, saya telah mengerjakan berbagai proyek yang melibatkan teknologi modern dan best practices.\r\n\r\nKeahlian teknis saya meliputi:\r\n• Pengembangan aplikasi menggunakan [teknologi]\r\n• Problem solving dan debugging yang efisien\r\n• Kolaborasi dalam tim agile/scrum\r\n\r\nSaya tertarik dengan Tech Innovators Inc karena reputasinya dalam inovasi teknologi. Portfolio saya dapat dilihat di https://kndknd.com.\r\n\r\nSaya berharap dapat mendiskusikan bagaimana skills saya dapat membantu mencapai goals tim Anda.\r\n\r\nBest regards,\r\nJohn Doe",
+        "portfolio": [],
+        "simulasiScores": {}
+      },
+      "jobData": {
+        "title": "Backend Developer",
+        "company": "Tech Innovators Inc",
+        "companyLogo": null,
+        "location": "Jakarta",
+        "type": "full-time",
+        "salary": {
+          "min": 15000000,
+          "max": 22000000,
+          "currency": "IDR"
+        }
+      },
+      "companyNotes": "Stage changed to Screening",
+      "interviewScheduled": null
+    }
+  ]
+}

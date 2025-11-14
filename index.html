@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SimHire - Platform Rekrutmen Terintegrasi dengan Simulasi Kerja Real-time, Job Application System, dan Portfolio Management" />
+    <title>SimHire - Platform Rekrutmen Berbasis Simulasi Kerja</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Polyfill for crypto.randomUUID (needed for non-localhost, non-HTTPS access)
+      if (typeof crypto !== 'undefined' && !crypto.randomUUID) {
+        crypto.randomUUID = function() {
+          return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+          );
+        };
+      }
+      // Fallback if crypto is completely unavailable
+      if (typeof crypto === 'undefined') {
+        window.crypto = {
+          randomUUID: function() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+              var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+              return v.toString(16);
+            });
+          },
+          getRandomValues: function(arr) {
+            for (var i = 0; i < arr.length; i++) {
+              arr[i] = Math.floor(Math.random() * 256);
+            }
+            return arr;
+          }
+        };
+      }
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Backend SimHire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #059669;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            color: #10b981;
+            font-weight: bold;
+        }
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        pre {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.online {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status.offline {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 SimHire Backend Test Dashboard</h1>
+        
+        <div class="test-section">
+            <h2>1. Health Check</h2>
+            <p>Test apakah backend server berjalan dengan baik</p>
+            <button onclick="testHealth()">Test Health Check</button>
+            <div id="health-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. Get All Jobs</h2>
+            <p>Mengambil semua lowongan pekerjaan dari database</p>
+            <button onclick="testGetJobs()">Get All Jobs</button>
+            <div id="jobs-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>3. Search Jobs</h2>
+            <p>Test pencarian lowongan dengan filter</p>
+            <input type="text" id="search-query" placeholder="Cari pekerjaan..." style="padding: 10px; width: 300px; margin-right: 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+            <button onclick="testSearchJobs()">Search</button>
+            <div id="search-result" class="result" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Summary</h2>
+            <div id="summary" style="margin-top: 15px;">
+                <p><strong>Backend URL:</strong> http://localhost:5000</p>
+                <p><strong>Frontend URL:</strong> http://localhost:8347</p>
+                <p><strong>Status:</strong> <span id="backend-status" class="status offline">Checking...</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+
+        async function testHealth() {
+            const resultDiv = document.getElementById('health-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>Testing...</p>';
+
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('backend-status').className = 'status online';
+                    document.getElementById('backend-status').textContent = 'Online ✅';
+                    resultDiv.innerHTML = `
+                        <p class="success">✅ Backend server running successfully!</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    throw new Error('Health check failed');
+                }
+            } catch (error) {
+                document.getElementById('backend-status').className = 'status offline';
+                document.getElementById('backend-status').textContent = 'Offline ❌';
+                resultDiv.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                    <p>Pastikan backend server sudah running di port 5000</p>
+                    <pre>cd backend\nnode server.js</pre>
+                `;
+            }
+        }
+
+        async function testGetJobs() {
+            const resultDiv = document.getElementById('jobs-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>Loading jobs...</p>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/jobs`);
+                const data = await response.json();
+                
+                if (data.success || data.jobs) {
+                    const jobs = data.jobs || data.data?.jobs || [];
+                    resultDiv.innerHTML = `
+                        <p class="success">✅ Found ${jobs.length} jobs!</p>
+                        <h3>Jobs List:</h3>
+                        ${jobs.map((job, idx) => `
+                            <div style="padding: 10px; margin: 10px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #10b981;">
+                                <h4>${idx + 1}. ${job.title}</h4>
+                                <p><strong>Company:</strong> ${job.companyName}</p>
+                                <p><strong>Location:</strong> ${job.location} (${job.locationMode})</p>
+                                <p><strong>Type:</strong> ${job.employmentType || job.type}</p>
+                                <p><strong>Experience:</strong> ${job.experienceLevel}</p>
+                                <p><strong>Salary:</strong> Rp ${(job.salaryMin / 1000000).toFixed(1)}jt - ${(job.salaryMax / 1000000).toFixed(1)}jt</p>
+                                <p><strong>Skills:</strong> ${(job.skills || []).join(', ')}</p>
+                                <p><strong>Status:</strong> <span style="background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 4px;">${job.status}</span></p>
+                            </div>
+                        `).join('')}
+                        <details>
+                            <summary>Raw JSON Data</summary>
+                            <pre>${JSON.stringify(data, null, 2)}</pre>
+                        </details>
+                    `;
+                } else {
+                    throw new Error('No jobs found');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p class="error">❌ Error: ${error.message}</p>
+                    <p>Pastikan backend sudah running dan database sudah di-initialize</p>
+                `;
+            }
+        }
+
+        async function testSearchJobs() {
+            const query = document.getElementById('search-query').value;
+            const resultDiv = document.getElementById('search-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<p>Searching...</p>';
+
+            try {
+                const url = query 
+                    ? `${API_BASE}/api/jobs?search=${encodeURIComponent(query)}`
+                    : `${API_BASE}/api/jobs`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.success || data.jobs) {
+                    const jobs = data.jobs || data.data?.jobs || [];
+                    resultDiv.innerHTML = `
+                        <p class="success">✅ Found ${jobs.length} jobs matching "${query || 'all'}"</p>
+                        ${jobs.length > 0 ? `
+                            <div style="margin-top: 15px;">
+                                ${jobs.map(job => `
+                                    <div style="padding: 10px; margin: 10px 0; background: white; border-radius: 6px; border: 1px solid #e5e7eb;">
+                                        <h4>${job.title}</h4>
+                                        <p>${job.description?.substring(0, 150)}...</p>
+                                        <p><strong>Company:</strong> ${job.companyName} | <strong>Location:</strong> ${job.location}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : '<p>No jobs found</p>'}
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        // Auto-run health check on page load
+        window.onload = () => {
+            testHealth();
+        };
+    </script>
+</body>
+</html>

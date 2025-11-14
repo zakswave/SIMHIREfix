@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": "8ef41097-b68c-4e8f-97c5-5ec2ae4830c4",
+      "email": "candidate@test.com",
+      "password": "$2a$10$x29EC9IytJh2XSh0uX/IBejjpDNvaOA9KYiNt00bDIVqykOfAfHDW",
+      "name": "John Doe",
+      "phone": "081234567890",
+      "role": "candidate",
+      "profile": {
+        "avatar": null,
+        "bio": "Passionate software developer with 3 years of experience",
+        "location": "Jakarta",
+        "skills": [
+          "JavaScript",
+          "React",
+          "Node.js",
+          "Python"
+        ],
+        "experience": 3,
+        "salaryExpectation": 15000000,
+        "availability": "available"
+      },
+      "verification": {
+        "status": "verified",
+        "nik": "1234567890123456",
+        "ktpDocument": null,
+        "npwp": null,
+        "npwpDocument": null,
+        "nib": null
+      },
+      "companyName": null,
+      "createdAt": "2025-11-13T01:24:34.071Z",
+      "updatedAt": "2025-11-13T01:24:34.072Z"
+    },
+    {
+      "id": "8424cc28-78a2-4fb3-b798-3eba477d86aa",
+      "email": "company@test.com",
+      "password": "$2a$10$FkQwep1m6L8ilQJ3wKBcD.Rs00sz4caiBmVA1Lbd1FhaFGR4n.DDO",
+      "name": "HR Manager",
+      "phone": "081234567891",
+      "role": "company",
+      "profile": {
+        "avatar": null,
+        "bio": null,
+        "location": "Jakarta",
+        "skills": [],
+        "experience": null,
+        "salaryExpectation": null,
+        "availability": null
+      },
+      "verification": {
+        "status": "verified",
+        "nik": null,
+        "ktpDocument": null,
+        "npwp": "1234567890",
+        "npwpDocument": null,
+        "nib": "9876543210"
+      },
+      "companyName": "Tech Innovators Inc",
+      "createdAt": "2025-11-13T01:24:34.149Z",
+      "updatedAt": "2025-11-13T01:24:34.149Z"
+    }
+  ]
+}

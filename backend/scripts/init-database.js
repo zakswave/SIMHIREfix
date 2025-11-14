@@ -1,0 +1,326 @@
+import { getDB } from '../utils/db.js';
+import bcrypt from 'bcryptjs';
+import { v4 as uuidv4 } from 'uuid';
+const sampleData = {
+  users: [
+    {
+      id: uuidv4(),
+      email: 'candidate@test.com',
+      password: await bcrypt.hash('password123', 10),
+      name: 'John Doe',
+      phone: '081234567890',
+      role: 'candidate',
+      profile: {
+        avatar: null,
+        bio: 'Passionate software developer with 3 years of experience',
+        location: 'Jakarta',
+        skills: ['JavaScript', 'React', 'Node.js', 'Python'],
+        experience: 3,
+        salaryExpectation: 15000000,
+        availability: 'available',
+      },
+      verification: {
+        status: 'verified',
+        nik: '1234567890123456',
+        ktpDocument: null,
+        npwp: null,
+        npwpDocument: null,
+        nib: null,
+      },
+      companyName: null,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      id: uuidv4(),
+      email: 'company@test.com',
+      password: await bcrypt.hash('password123', 10),
+      name: 'HR Manager',
+      phone: '081234567891',
+      role: 'company',
+      profile: {
+        avatar: null,
+        bio: null,
+        location: 'Jakarta',
+        skills: [],
+        experience: null,
+        salaryExpectation: null,
+        availability: null,
+      },
+      verification: {
+        status: 'verified',
+        nik: null,
+        ktpDocument: null,
+        npwp: '1234567890',
+        npwpDocument: null,
+        nib: '9876543210',
+      },
+      companyName: 'Tech Innovators Inc',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+  ],
+  jobs: [
+    {
+      id: uuidv4(),
+      companyId: '',
+      companyName: 'Tech Innovators Inc',
+      companyLogo: null,
+      title: 'Frontend Developer',
+      description: 'We are looking for a talented Frontend Developer to join our team. You will be working on cutting-edge web applications using React and modern JavaScript frameworks.',
+      requirements: [
+        'Bachelor degree in Computer Science or related field',
+        '3+ years of experience with React',
+        'Strong understanding of JavaScript, HTML, CSS',
+        'Experience with state management (Redux/Zustand)',
+        'Good communication skills',
+      ],
+      responsibilities: [
+        'Develop and maintain web applications',
+        'Collaborate with design team',
+        'Write clean, maintainable code',
+        'Participate in code reviews',
+      ],
+      skills: ['React', 'JavaScript', 'TypeScript', 'CSS', 'HTML', 'Redux'],
+      location: 'Jakarta',
+      locationMode: 'hybrid',
+      type: 'full-time',
+      employmentType: 'full-time',
+      experienceLevel: 'mid',
+      salaryMin: 12000000,
+      salaryMax: 18000000,
+      salary: {
+        min: 12000000,
+        max: 18000000,
+        currency: 'IDR',
+      },
+      benefits: ['Health Insurance', 'Remote Work', 'Learning Budget'],
+      status: 'open',
+      deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      postedAt: new Date().toISOString(),
+      publishedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      closedAt: null,
+      applicantsCount: 0,
+      applicationCount: 0,
+      remote: false,
+    },
+    {
+      id: uuidv4(),
+      companyId: '',
+      companyName: 'Tech Innovators Inc',
+      companyLogo: null,
+      title: 'Backend Developer',
+      description: 'Join our backend team to build scalable APIs and microservices. We use Node.js, Express, and modern cloud technologies.',
+      requirements: [
+        'Bachelor degree in Computer Science or related field',
+        '2+ years of experience with Node.js',
+        'Experience with RESTful API design',
+        'Knowledge of database systems (SQL/NoSQL)',
+        'Understanding of microservices architecture',
+      ],
+      responsibilities: [
+        'Design and develop RESTful APIs',
+        'Optimize database queries',
+        'Implement security best practices',
+        'Write unit and integration tests',
+      ],
+      skills: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS'],
+      location: 'Jakarta',
+      locationMode: 'remote',
+      type: 'full-time',
+      employmentType: 'full-time',
+      experienceLevel: 'mid',
+      salaryMin: 15000000,
+      salaryMax: 22000000,
+      salary: {
+        min: 15000000,
+        max: 22000000,
+        currency: 'IDR',
+      },
+      benefits: ['Health Insurance', 'Remote Work', 'Stock Options', 'Flexible Hours'],
+      status: 'open',
+      deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      postedAt: new Date().toISOString(),
+      publishedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      closedAt: null,
+      applicantsCount: 0,
+      applicationCount: 0,
+      remote: true,
+    },
+    {
+      id: uuidv4(),
+      companyId: '',
+      companyName: 'Tech Innovators Inc',
+      companyLogo: null,
+      title: 'UI/UX Designer',
+      description: 'We are seeking a creative UI/UX Designer to create amazing user experiences. You will work closely with product and engineering teams.',
+      requirements: [
+        'Bachelor degree in Design or related field',
+        '3+ years of experience in UI/UX design',
+        'Proficiency in Figma and Adobe Creative Suite',
+        'Strong portfolio demonstrating design skills',
+        'Understanding of user-centered design principles',
+      ],
+      responsibilities: [
+        'Create wireframes and prototypes',
+        'Conduct user research and testing',
+        'Design user interfaces for web and mobile',
+        'Collaborate with developers',
+      ],
+      skills: ['Figma', 'Adobe XD', 'Sketch', 'UI Design', 'UX Research', 'Prototyping'],
+      location: 'Bandung',
+      locationMode: 'on-site',
+      type: 'full-time',
+      employmentType: 'full-time',
+      experienceLevel: 'mid',
+      salaryMin: 10000000,
+      salaryMax: 15000000,
+      salary: {
+        min: 10000000,
+        max: 15000000,
+        currency: 'IDR',
+      },
+      benefits: ['Health Insurance', 'Creative Tools Budget', 'Training'],
+      status: 'open',
+      deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      postedAt: new Date().toISOString(),
+      publishedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      closedAt: null,
+      applicantsCount: 0,
+      applicationCount: 0,
+      remote: false,
+    },
+    {
+      id: uuidv4(),
+      companyId: '',
+      companyName: 'Tech Innovators Inc',
+      companyLogo: null,
+      title: 'Data Analyst',
+      description: 'Looking for a Data Analyst to help us make data-driven decisions. You will work with large datasets and create insightful reports.',
+      requirements: [
+        'Bachelor degree in Statistics, Mathematics, or related field',
+        '2+ years of experience in data analysis',
+        'Proficiency in SQL and Python',
+        'Experience with data visualization tools',
+        'Strong analytical and problem-solving skills',
+      ],
+      responsibilities: [
+        'Analyze complex datasets',
+        'Create dashboards and reports',
+        'Present insights to stakeholders',
+        'Collaborate with business teams',
+      ],
+      skills: ['Python', 'SQL', 'Tableau', 'Power BI', 'Excel', 'Statistics'],
+      location: 'Jakarta',
+      locationMode: 'hybrid',
+      type: 'full-time',
+      employmentType: 'full-time',
+      experienceLevel: 'mid',
+      salaryMin: 12000000,
+      salaryMax: 18000000,
+      salary: {
+        min: 12000000,
+        max: 18000000,
+        currency: 'IDR',
+      },
+      benefits: ['Health Insurance', 'Remote Work', 'Learning Budget', 'Bonus'],
+      status: 'open',
+      deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      postedAt: new Date().toISOString(),
+      publishedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      closedAt: null,
+      applicantsCount: 0,
+      applicationCount: 0,
+      remote: false,
+    },
+    {
+      id: uuidv4(),
+      companyId: '',
+      companyName: 'Tech Innovators Inc',
+      companyLogo: null,
+      title: 'DevOps Engineer',
+      description: 'We need an experienced DevOps Engineer to manage our infrastructure and CI/CD pipelines. Experience with cloud platforms is a must.',
+      requirements: [
+        'Bachelor degree in Computer Science or related field',
+        '3+ years of experience in DevOps',
+        'Experience with AWS or Google Cloud',
+        'Proficiency in Docker and Kubernetes',
+        'Knowledge of CI/CD tools',
+      ],
+      responsibilities: [
+        'Manage cloud infrastructure',
+        'Implement CI/CD pipelines',
+        'Monitor system performance',
+        'Ensure security and compliance',
+      ],
+      skills: ['AWS', 'Docker', 'Kubernetes', 'Jenkins', 'Terraform', 'Linux'],
+      location: 'Jakarta',
+      locationMode: 'remote',
+      type: 'full-time',
+      employmentType: 'full-time',
+      experienceLevel: 'senior',
+      salaryMin: 18000000,
+      salaryMax: 25000000,
+      salary: {
+        min: 18000000,
+        max: 25000000,
+        currency: 'IDR',
+      },
+      benefits: ['Health Insurance', 'Remote Work', 'Stock Options', 'Training Budget'],
+      status: 'open',
+      deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      postedAt: new Date().toISOString(),
+      publishedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      closedAt: null,
+      applicantsCount: 0,
+      applicationCount: 0,
+      remote: true,
+    },
+  ],
+  applications: [],
+  simulasi: [],
+  portfolios: [],
+  interviews: [],
+  messages: [],
+};
+
+async function initDatabase() {
+  try {
+    console.log('🔄 Initializing database...\n');
+    const companyUser = sampleData.users.find(u => u.role === 'company');
+    if (companyUser) {
+      sampleData.jobs.forEach(job => {
+        job.companyId = companyUser.id;
+      });
+    }
+    for (const [dbName, data] of Object.entries(sampleData)) {
+      console.log(`📦 Initializing ${dbName}...`);
+      const db = await getDB(dbName);
+      db.data[dbName] = data;
+      await db.write();
+      console.log(`✅ ${dbName}: ${data.length} records created`);
+    }
+
+    console.log('\n✨ Database initialized successfully!');
+    console.log('\n📝 Sample credentials:');
+    console.log('   Candidate: candidate@test.com / password123');
+    console.log('   Company:   company@test.com / password123');
+
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Error initializing database:', error);
+    process.exit(1);
+  }
+}
+
+initDatabase();

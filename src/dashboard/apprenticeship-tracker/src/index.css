@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Internship Platform Design System - Professional & Modern */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --background: 0 0% 99%;
+    --foreground: 225 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 225 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 15% 20%;
+
+    /* Primary Blue - Professional & Trustworthy */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 55%;
+
+    /* Secondary Colors */
+    --secondary: 215 25% 97%;
+    --secondary-foreground: 225 15% 20%;
+
+    --muted: 215 25% 96%;
+    --muted-foreground: 225 10% 55%;
+
+    --accent: 213 100% 97%;
+    --accent-foreground: 217 91% 60%;
+
+    /* Status Colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* UI Elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(213 88% 65%));
+    --gradient-secondary: linear-gradient(180deg, hsl(215 25% 99%), hsl(215 25% 96%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(213 88% 65%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0 hsl(225 15% 20% / 0.1);
+    --shadow-md: 0 4px 6px -1px hsl(225 15% 20% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(225 15% 20% / 0.1);
+    --shadow-card: 0 2px 8px 0 hsl(225 15% 20% / 0.08);
+    --shadow-hover: 0 8px 25px -5px hsl(217 91% 60% / 0.25);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode colors */
+    --background: 225 15% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 225 15% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 225 15% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 217 91% 65%;
+    --primary-foreground: 225 15% 8%;
+    --primary-hover: 217 91% 70%;
+
+    --secondary: 225 15% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 225 15% 15%;
+    --muted-foreground: 225 10% 60%;
+
+    --accent: 225 15% 15%;
+    --accent-foreground: 217 91% 65%;
+
+    --border: 225 15% 20%;
+    --input: 225 15% 20%;
+    --ring: 217 91% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  /* Custom button variants */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Status badges */
+  .status-pending {
+    @apply bg-warning/10 text-warning border-warning/20;
+  }
+
+  .status-interview {
+    @apply bg-primary/10 text-primary border-primary/20;
+  }
+
+  .status-accepted {
+    @apply bg-success/10 text-success border-success/20;
+  }
+
+  .status-rejected {
+    @apply bg-destructive/10 text-destructive border-destructive/20;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
