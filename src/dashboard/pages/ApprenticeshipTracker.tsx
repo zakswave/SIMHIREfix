@@ -212,6 +212,18 @@ const ApprenticeshipTracker: React.FC = () => {
         const activeInternships = response.data.internships.filter(
           (internship: Internship) => internship.status === 'active'
         );
+        
+        // Debug: Log first internship structure
+        if (activeInternships.length > 0) {
+          console.log('[ApprenticeshipTracker] Sample internship structure:', {
+            id: activeInternships[0].id,
+            position: activeInternships[0].position,
+            company: activeInternships[0].company,
+            companyId: activeInternships[0].companyId,
+            hasCompanyName: !!activeInternships[0].company?.name
+          });
+        }
+        
         console.log('[ApprenticeshipTracker] Loaded internships:', activeInternships.length);
         setInternships(activeInternships);
       } else {
