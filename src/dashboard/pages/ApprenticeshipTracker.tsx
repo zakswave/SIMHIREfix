@@ -41,7 +41,7 @@ const InternshipCard: React.FC<InternshipCardProps> = ({
       <div className="flex items-start gap-3 mb-4">
         {}
         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 group-hover:scale-105 transition-transform shadow-md">
-          {internship.company.name.charAt(0)}
+          {internship.company?.name?.charAt(0) || internship.companyName?.charAt(0) || 'C'}
         </div>
 
         <div className="flex-1 min-w-0">
@@ -50,7 +50,7 @@ const InternshipCard: React.FC<InternshipCardProps> = ({
               <h3 className="text-base font-semibold text-gray-900 group-hover:text-green-600 transition-colors line-clamp-1">
                 {internship.position}
               </h3>
-              <p className="text-sm text-gray-600 font-medium line-clamp-1">{internship.company.name}</p>
+              <p className="text-sm text-gray-600 font-medium line-clamp-1">{internship.company?.name || internship.companyName || 'Company'}</p>
             </div>
             <button
               onClick={() => onBookmark(internship.id)}
@@ -335,8 +335,8 @@ const ApprenticeshipTracker: React.FC = () => {
 
   const filteredInternships = internships.filter(internship => {
     const matchesSearch = internship.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         internship.company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         internship.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                         (internship.company?.name || internship.companyName || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         internship.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
 
     const matchesBookmark = showBookmarked ? internship.isBookmarked : true;
 
