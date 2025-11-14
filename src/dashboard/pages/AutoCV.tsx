@@ -304,13 +304,28 @@ const AutoCV: React.FC = () => {
             {}
             <div className="lg:col-span-1 space-y-3">
               <h3 className="text-sm font-semibold text-gray-700 mb-1">Pilih Template</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 {templates.map((tpl)=>(
-                  <button key={tpl.id} onClick={()=>setCvData(d=>({...d, template: tpl.id}))} className={`border-2 rounded-lg overflow-hidden group transition-all ${cvData.template===tpl.id?'border-primary-600 ring-2 ring-purple-200':'border-gray-200 hover:border-gray-300'}`}>
-                    <div className={`w-full h-24 bg-gradient-to-br ${tpl.color} flex items-center justify-center`}>
-                      <div className="text-white font-bold text-lg opacity-40">{tpl.name[0]}</div>
+                  <button 
+                    key={tpl.id} 
+                    onClick={()=>setCvData(d=>({...d, template: tpl.id}))} 
+                    className={`border-2 rounded-lg overflow-hidden group transition-all ${
+                      cvData.template===tpl.id
+                        ?'border-green-600 ring-2 ring-green-200 shadow-lg'
+                        :'border-gray-200 hover:border-gray-400 hover:shadow-md'
+                    }`}
+                  >
+                    <div className={`w-full h-28 bg-gradient-to-br ${tpl.color} flex items-center justify-center relative`}>
+                      <div className="text-white font-bold text-3xl drop-shadow-lg">{tpl.name[0]}</div>
+                      {cvData.template===tpl.id && (
+                        <div className="absolute top-2 right-2 bg-white rounded-full p-1">
+                          <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                          </svg>
+                        </div>
+                      )}
                     </div>
-                    <div className="text-xs py-1 bg-gray-50 text-gray-700 font-medium">{tpl.name}</div>
+                    <div className="text-sm py-2 bg-white text-gray-800 font-semibold">{tpl.name}</div>
                   </button>
                 ))}
               </div>

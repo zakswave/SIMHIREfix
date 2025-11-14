@@ -88,8 +88,16 @@ const SimulasiExecution: React.FC = () => {
   const calculateTaskScore = (answerText: string, task: SimulasiTask): number => {
     const answerLength = answerText.trim().length;
     let score = 0;
-    if (answerLength < 50) return Math.min(40, answerLength);
-    score += Math.min(30, (answerLength / 500) * 30);
+    
+    // Base score dari panjang jawaban (minimal 30 jika ada jawaban)
+    if (answerLength === 0) return 0;
+    if (answerLength < 50) {
+      score += Math.max(30, Math.min(50, answerLength)); // Minimal 30, maksimal 50
+    } else {
+      score += Math.min(40, (answerLength / 500) * 40); // Maksimal 40 dari panjang
+    }
+    
+    // Quality keywords (30 poin)
     const qualityKeywords = {
       coding: ['function', 'class', 'const', 'let', 'return', 'async', 'await'],
       design: ['user', 'experience', 'interface', 'visual', 'layout', 'color'],
@@ -103,7 +111,9 @@ const SimulasiExecution: React.FC = () => {
     const lowerAnswer = answerText.toLowerCase();
     const matchedKeywords = keywords.filter(keyword => lowerAnswer.includes(keyword)).length;
 
-    score += (matchedKeywords / keywords.length) * 40;
+    score += (matchedKeywords / keywords.length) * 30;
+    
+    // Bonus formatting (30 poin total)
     const paragraphs = answerText.split('\n\n').length;
     if (paragraphs > 1) score += 10;
     if (task.type === 'coding' && answerText.includes('```')) score += 10;
