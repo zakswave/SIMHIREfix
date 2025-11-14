@@ -28,7 +28,7 @@ import {
 import { toast } from 'sonner';
 
 const CompanyLayout: React.FC = () => {
-  const { user, setUser } = useUser();
+  const { user, logout } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -37,13 +37,7 @@ const CompanyLayout: React.FC = () => {
     initializeCompanyData();
   }, []);
   const handleLogout = () => {
-    localStorage.removeItem('simhire_token');
-    localStorage.removeItem('simhire_user');
-    setUser(null);
-    toast.success('Berhasil logout', {
-      description: 'Anda telah keluar dari akun.',
-    });
-    navigate('/login');
+    logout();
   };
   useEffect(() => {
     if (hasCheckedAuth.current) return;
