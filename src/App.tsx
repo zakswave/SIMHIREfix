@@ -187,7 +187,7 @@ function App() {
               <Route path="simulasi-kerja/leaderboard" element={<SimulasiLeaderboard />} />
               <Route path="simulasi-kerja/:categoryId" element={<SimulasiDetail />} />
               <Route path="simulasi-kerja/:categoryId/execute" element={<SimulasiExecution />} />
-              <Route path="simulasi-kerja/:categoryId/results" element={<SimulasiResults />} />
+              <Route path="simulasi-kerja/results/:resultId" element={<SimulasiResults />} />
               <Route path="apprenticeship-tracker" element={<ApprenticeshipTracker />} />
               <Route path="application-tracker" element={<ApplicationTracker />} />
               <Route path="auto-cv" element={<AutoCV />} />
